@@ -27,7 +27,7 @@ const updateJobSchema = Joi.object({
   salary_min: Joi.number().optional().allow(null),
   salary_max: Joi.number().optional().allow(null),
   is_salary_visible: Joi.boolean().optional(),
-  status: Joi.string().valid('open', 'closed').optional(),
+  status: Joi.string().valid('open', 'closed', 'close').optional(),
 });
 
 module.exports = { createJobSchema, updateJobSchema };

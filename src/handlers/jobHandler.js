@@ -52,12 +52,21 @@ const createJob = async (req, res) => {
 const getAllJobs = async (req, res) => {
   try {
     const { title, 'company-name': companyName } = req.query;
+    const hasFilter = (title && title.trim() !== '') || (companyName && companyName.trim() !== '');
+
+    const selectFields = hasFilter
+      ? `j.id, j.company_id, j.category_id, j.title, j.description,
+         j.job_type, j.experience_level, j.location_type, j.location_city,
+         j.salary_min, j.salary_max, j.is_salary_visible, j.status,
+         c.name AS company_name`
+      : `j.id, j.company_id, j.category_id, j.title, j.description,
+         j.job_type, j.experience_level, j.location_type, j.location_city,
+         j.salary_min, j.salary_max, j.is_salary_visible, j.status`;
 
     let query = `
-      SELECT j.*, c.name AS company_name, c.location AS company_location,
-             cat.name AS category_name
+      SELECT ${selectFields}
       FROM jobs j
-      LEFT JOIN companies c ON j.company_id = c.id
+      JOIN companies c ON j.company_id = c.id
       LEFT JOIN categories cat ON j.category_id = cat.id
     `;
 

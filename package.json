@@ -1,11 +1,12 @@
 {
   "name": "openjob-api",
-  "version": "1.0.0",
-  "description": "OpenJob RESTful API",
+  "version": "2.0.0",
+  "description": "OpenJob RESTful API V2",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "start:dev": "nodemon src/server.js",
+    "start:consumer": "node src/consumer.js",
     "migrate:up": "node-pg-migrate up",
     "migrate:down": "node-pg-migrate down",
     "migrate:create": "node-pg-migrate create"
@@ -14,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.10.7",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -21,7 +23,9 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "node-pg-migrate": "^7.9.1",
+    "nodemailer": "^6.10.1",
     "pg": "^8.14.1",
+    "redis": "^4.7.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

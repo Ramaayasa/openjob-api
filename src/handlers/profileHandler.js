@@ -24,7 +24,10 @@ const getProfileApplications = async (req, res) => {
   const userId = req.user.id;
   try {
     const result = await pool.query(
-      `SELECT a.*, j.title AS job_title, c.name AS company_name
+      `SELECT a.id, a.user_id, a.job_id, a.status, a.cover_letter, a.created_at, a.updated_at,
+              j.title AS job_title, j.job_type, j.location_type, j.location_city,
+              j.salary_min, j.salary_max, j.company_id,
+              c.name AS company_name
        FROM applications a
        LEFT JOIN jobs j ON a.job_id = j.id
        LEFT JOIN companies c ON j.company_id = c.id
