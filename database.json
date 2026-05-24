@@ -1,0 +1,10 @@
+{
+  "defaultEnv": "default",
+  "default": {
+    "user": { "ENV": "PGUSER" },
+    "password": { "ENV": "PGPASSWORD" },
+    "database": { "ENV": "PGDATABASE" },
+    "host": { "ENV": "PGHOST" },
+    "port": { "ENV": "PGPORT" }
+  }
+}
